@@ -1,0 +1,23 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.nbc
+*.nbi
+
+# Dataset & large raw/intermediate data
+raw_data/
+azure2019/
+mid-data/train_info*.txt
+result/*
+!result/summary.json
+
+# Papers, docs, and environment
+*.pdf
+.venv/
+venv/
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db
