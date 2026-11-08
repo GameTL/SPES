@@ -18,58 +18,79 @@ def cal_correlation(pre_arr, arr, lag):
         return 0, 0
 
 
-import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument("--start", default=0, type=int)
-parser.add_argument("--total", default=3704, type=int) #1/10 of the total
-parser.add_argument("--warm_th", default=0.7, type=float)
-
-if __name__ == '__main__':
-    params = vars(parser.parse_args())
-    start, total = params["start"], params["total"]
-    warm_th, zero_th = params["warm_th"], 1 - params["warm_th"]
-
+def load_corr_inputs(corr_dir):
     func_arrcount = {}
     func_forget = {}
-    with open("./cal_corr/to_cal_corr.txt") as rf:
+    with open(os.path.join(corr_dir, "to_cal_corr.txt")) as rf:
         for line in rf:
             func, forget, arrcount = line.strip().split('\t')
             func_forget[func] = int(forget)
             func_arrcount[func] = [int(a) for a in arrcount.split(',')]
-    
+
     unknown_ownerapp_lst = {}
-    with open("./cal_corr/unknown_ownerapp_lst.txt") as rf:
+    with open(os.path.join(corr_dir, "unknown_ownerapp_lst.txt")) as rf:
         for line in rf:
             func, ownerapp_lst = line.strip().split('\t')
             unknown_ownerapp_lst[func] = ownerapp_lst.split(',')
-    
+    return func_arrcount, func_forget, unknown_ownerapp_lst
+
+
+def run_shard(start, total, warm_th, func_arrcount, func_forget, unknown_ownerapp_lst, out_dir):
+    """Same shard loop as the original CLI. Writes one file: {out_dir}/{start}.txt."""
+    zero_th = 1 - warm_th
     pre_func_lst = defaultdict(list)
-    
+    keys = sorted(list(unknown_ownerapp_lst.keys()))
+    shard = keys[start * total: min((start + 1) * total, len(keys))]
+
     c = 0
     st = time.time()
-    with tqdm(total=total) as pbar:
-        for func in sorted(list(unknown_ownerapp_lst.keys()))[start * total: min((start+1) * total, len(unknown_ownerapp_lst))]:
+    with tqdm(total=len(shard) if len(shard) else total) as pbar:
+        for func in shard:
             c += 1
-            if c % 40 == 0: pbar.update(40)
+            if c % 40 == 0:
+                pbar.update(40)
             for pre_func in set(unknown_ownerapp_lst[func]):
-                
-                if pre_func == func: continue
+                if pre_func == func:
+                    continue
                 forget = func_forget[pre_func]
                 for lag in range(0, 11):
-                    corr_rate, zero_inconsistency = cal_correlation(func_arrcount[pre_func][forget*1440: ],
-                                                                    func_arrcount[func][forget*1440: ], lag)
+                    corr_rate, zero_inconsistency = cal_correlation(
+                        func_arrcount[pre_func][forget * 1440:],
+                        func_arrcount[func][forget * 1440:],
+                        lag,
+                    )
                     if corr_rate >= warm_th and zero_inconsistency <= zero_th:
-                        #print(corr_rate, warm_th, zero_inconsistency, zero_th)
                         pre_func_lst[func].append((pre_func, lag, corr_rate))
                         break
-            
-            if func in pre_func_lst: #sort: in the order of corr_rate from large to small
+            if func in pre_func_lst:
                 pre_func_lst[func] = sorted(pre_func_lst[func], key=lambda tri_tuple: tri_tuple[-1], reverse=True)
 
-    print(len(pre_func_lst), round((time.time()-st)/60, 4))
-    
-    os.makedirs("./func_candi_tuple_lst", exist_ok=True)
-
-    with open(f"./func_candi_tuple_lst/{start}.txt", "w") as wf:
+    print(len(pre_func_lst), round((time.time() - st) / 60, 4))
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, f"{start}.txt")
+    with open(out_path, "w") as wf:
         for f, tri_tuple_lst in pre_func_lst.items():
-            wf.write(f+":"+'\t'.join("{},{},{:.4f}".format(a, b, c) for (a, b, c) in tri_tuple_lst)+'\n')
+            wf.write(f + ":" + '\t'.join("{},{},{:.4f}".format(a, b, c) for (a, b, c) in tri_tuple_lst) + '\n')
+    return out_path
+
+
+import argparse
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--start", default=0, type=int)
+    parser.add_argument("--total", default=3704, type=int)  # 1/10 of the total
+    parser.add_argument("--warm_th", default=0.7, type=float)
+    parser.add_argument("--corr-dir", default="./cal_corr")
+    parser.add_argument("--out-dir", default="./func_candi_tuple_lst")
+    params = vars(parser.parse_args())
+    func_arrcount, func_forget, unknown_ownerapp_lst = load_corr_inputs(params["corr_dir"])
+    run_shard(
+        params["start"],
+        params["total"],
+        params["warm_th"],
+        func_arrcount,
+        func_forget,
+        unknown_ownerapp_lst,
+        params["out_dir"],
+    )
