@@ -1,0 +1,11 @@
+{
+  "n_functions_simulated": 39388,
+  "Q3_CSR": 0.0958,
+  "median_CSR": 0.0,
+  "P90_CSR": 0.6667,
+  "zero_cold_share_pct": 58.64,
+  "always_cold_share_pct": 7.63,
+  "total_cold_starts": 218394,
+  "total_invocations": 1866622093,
+  "WMT_minutes": 19271548
+}
