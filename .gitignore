@@ -9,6 +9,8 @@ __pycache__/
 raw_data/
 azure2019/
 mid-data/train_info*.txt
+mid-data/cal_corr/
+mid-data/func_candi_tuple_lst_seq/
 result/*
 !result/summary.json
 

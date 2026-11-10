@@ -471,6 +471,25 @@ with open("mid-data/train_info.txt", "w") as wf:
     for func, state in func_class.items():
         wf.write(func+'\t'+str(state.type)+'\t'+str(state.forget)+'\n')
 
+# Notebook cells that repro previously skipped: write correlation inputs
+# exactly as run.ipynb does, after categorization (and the same PLUSED reset).
+os.makedirs("mid-data/cal_corr", exist_ok=True)
+with open("mid-data/cal_corr/to_cal_corr.txt", "w") as wf:
+    for func, arrcount in train_func_arrcount.items():
+        wf.write(func+'\t'+str(func_class[func].forget)+'\t'+','.join(str(a) for a in arrcount)+'\n')
+
+to_cal_corr_num = 0
+with open("mid-data/cal_corr/unknown_ownerapp_lst.txt", "w") as wf:
+    for func, state in func_class.items():
+        if state.type == 0:
+            [owner, app] = train_func_owner_app[func].split('\t')
+            ownerapp_lst = (train_owner_func[owner] | train_app_func[app])
+            ownerapp_lst.remove(func)
+            if len(ownerapp_lst) > 0:
+                to_cal_corr_num += 1
+                wf.write(func+'\t'+','.join(list(ownerapp_lst))+'\n')
+print("to_cal_corr_num", to_cal_corr_num, flush=True)
+
 # ---- cell 28 ----
 valid_split_DAY = 9
 func_valid_res = {func: {"cold": [20000]*3, "waste": [20000]*3} 
@@ -1370,8 +1389,14 @@ def read_json(filepath):
         return
     
 def json_pretty_dump(obj, filename):
+    def _plain(o):
+        if isinstance(o, np.integer):
+            return int(o)
+        if isinstance(o, np.floating):
+            return float(o)
+        raise TypeError(f"Object of type {o.__class__.__name__} is not JSON serializable")
     with open(filename, "w") as fw:
-        json.dump(obj,fw, sort_keys=True, indent=4, separators=(",", ": "), ensure_ascii=False)
+        json.dump(obj, fw, sort_keys=True, indent=4, separators=(",", ": "), ensure_ascii=False, default=_plain)
 
 # ---- cell 71 ----
 import time

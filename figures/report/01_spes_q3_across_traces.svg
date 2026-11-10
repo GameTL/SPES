@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="806.4pt" height="385.2pt" viewBox="0 0 806.4 385.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-09T17:17:41.061110</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 385.2 
+L 806.4 385.2 
+L 806.4 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 233.856 288.9 
+L 556.416 288.9 
+L 556.416 88.596 
+L 233.856 88.596 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 241.254165 288.9 
+L 241.254165 88.596 
+" clip-path="url(#pbc0f18cb7d)" style="fill: none; stroke: #dce3eb; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="m7b8f704f94" d="M 0 0 
+L 0 3.5 
+" style="stroke: #4f6073; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m7b8f704f94" x="241.254165" y="288.9" style="fill: #4f6073; stroke: #4f6073; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #4f6073" x="241.254165" y="304.257422" transform="rotate(-0 241.254165 304.257422)">0%</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 315.235817 288.9 
+L 315.235817 88.596 
+" clip-path="url(#pbc0f18cb7d)" style="fill: none; stroke: #dce3eb; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m7b8f704f94" x="315.235817" y="288.9" style="fill: #4f6073; stroke: #4f6073; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #4f6073" x="315.235817" y="304.257422" transform="rotate(-0 315.235817 304.257422)">25%</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 389.217468 288.9 
+L 389.217468 88.596 
+" clip-path="url(#pbc0f18cb7d)" style="fill: none; stroke: #dce3eb; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m7b8f704f94" x="389.217468" y="288.9" style="fill: #4f6073; stroke: #4f6073; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #4f6073" x="389.217468" y="304.257422" transform="rotate(-0 389.217468 304.257422)">50%</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 463.199119 288.9 
+L 463.199119 88.596 
+" clip-path="url(#pbc0f18cb7d)" style="fill: none; stroke: #dce3eb; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m7b8f704f94" x="463.199119" y="288.9" style="fill: #4f6073; stroke: #4f6073; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #4f6073" x="463.199119" y="304.257422" transform="rotate(-0 463.199119 304.257422)">75%</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 537.180771 288.9 
+L 537.180771 88.596 
+" clip-path="url(#pbc0f18cb7d)" style="fill: none; stroke: #dce3eb; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m7b8f704f94" x="537.180771" y="288.9" style="fill: #4f6073; stroke: #4f6073; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #4f6073" x="537.180771" y="304.257422" transform="rotate(-0 537.180771 304.257422)">100%</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #18283b" x="395.136" y="324.258281" transform="rotate(-0 395.136 324.258281)">Q3 cold-start rate</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2"/>
+   <g id="LineCollection_1">
+    <path d="M 241.254165 109.262286 
+L 273.214239 109.262286 
+" clip-path="url(#pbc0f18cb7d)" style="fill: none; stroke: #516378; stroke-width: 2"/>
+   </g>
+   <g id="LineCollection_2">
+    <path d="M 241.254165 141.056571 
+L 269.620975 141.056571 
+" clip-path="url(#pbc0f18cb7d)" style="fill: none; stroke: #205a91; stroke-width: 2"/>
+   </g>
+   <g id="LineCollection_3">
+    <path d="M 241.254165 172.850857 
+L 445.544407 172.850857 
+" clip-path="url(#pbc0f18cb7d)" style="fill: none; stroke: #205a91; stroke-width: 2"/>
+   </g>
+   <g id="LineCollection_4">
+    <path d="M 241.254165 204.645143 
+L 241.254165 204.645143 
+" clip-path="url(#pbc0f18cb7d)" style="fill: none; stroke: #205a91; stroke-width: 2"/>
+   </g>
+   <g id="LineCollection_5">
+    <path d="M 241.254165 236.439429 
+L 296.112908 236.439429 
+" clip-path="url(#pbc0f18cb7d)" style="fill: none; stroke: #205a91; stroke-width: 2"/>
+   </g>
+   <g id="LineCollection_6">
+    <path d="M 241.254165 268.233714 
+L 241.254165 268.233714 
+" clip-path="url(#pbc0f18cb7d)" style="fill: none; stroke: #205a91; stroke-width: 2"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 233.856 288.9 
+L 556.416 288.9 
+" style="fill: none; stroke: #4f6073; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #18283b" x="591.8976" y="79.58232" transform="rotate(-0 591.8976 79.58232)">Offline correlation scope</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #18283b" x="185.472" y="108.836373" transform="rotate(-0 185.472 108.836373)">Azure 2019 · paper</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4f6073" x="185.472" y="116.687262" transform="rotate(-0 185.472 116.687262)">n = 39,388</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #18283b" x="591.8976" y="112.016215" transform="rotate(-0 591.8976 112.016215)">Published SPES result</text>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="m2eb7c12f1b" d="M -0 4.949747 
+L 4.949747 0 
+L 0 -4.949747 
+L -4.949747 -0 
+z
+" style="stroke: #516378; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#pbc0f18cb7d)">
+     <use xlink:href="#m2eb7c12f1b" x="273.214239" y="109.262286" style="fill: #ffffff; stroke: #516378; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #516378" x="283.214239" y="112.015801" transform="rotate(-0 283.214239 112.015801)">10.8%</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #18283b" x="185.472" y="140.631073" transform="rotate(-0 185.472 140.631073)">Azure 2019 · replay</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4f6073" x="185.472" y="148.481548" transform="rotate(-0 185.472 148.481548)">n = 39,388</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #18283b" x="591.8976" y="143.810087" transform="rotate(-0 591.8976 143.810087)">Same app or same owner</text>
+   </g>
+   <g id="PathCollection_2">
+    <defs>
+     <path id="m8d269b0347" d="M 0 3.5 
+C 0.928211 3.5 1.81853 3.131218 2.474874 2.474874 
+C 3.131218 1.81853 3.5 0.928211 3.5 0 
+C 3.5 -0.928211 3.131218 -1.81853 2.474874 -2.474874 
+C 1.81853 -3.131218 0.928211 -3.5 0 -3.5 
+C -0.928211 -3.5 -1.81853 -3.131218 -2.474874 -2.474874 
+C -3.131218 -1.81853 -3.5 -0.928211 -3.5 0 
+C -3.5 0.928211 -3.131218 1.81853 -2.474874 2.474874 
+C -1.81853 3.131218 -0.928211 3.5 0 3.5 
+z
+" style="stroke: #205a91; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#pbc0f18cb7d)">
+     <use xlink:href="#m8d269b0347" x="269.620975" y="141.056571" style="fill: #205a91; stroke: #205a91; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #205a91" x="279.620975" y="143.810087" transform="rotate(-0 279.620975 143.810087)">9.59%</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #18283b" x="185.472" y="172.425358" transform="rotate(-0 185.472 172.425358)">Azure 2021 · replay</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4f6073" x="185.472" y="180.275833" transform="rotate(-0 185.472 180.275833)">n = 238</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #18283b" x="591.8976" y="175.604787" transform="rotate(-0 591.8976 175.604787)">Same app only</text>
+   </g>
+   <g id="PathCollection_3">
+    <g clip-path="url(#pbc0f18cb7d)">
+     <use xlink:href="#m8d269b0347" x="445.544407" y="172.850857" style="fill: #205a91; stroke: #205a91; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="text_19">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #205a91" x="455.544407" y="175.604373" transform="rotate(-0 455.544407 175.604373)">69.03%</text>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #18283b" x="185.472" y="204.219644" transform="rotate(-0 185.472 204.219644)">Huawei 2025 · replay</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4f6073" x="185.472" y="212.070119" transform="rotate(-0 185.472 212.070119)">n = 6,504</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #18283b" x="591.8976" y="207.399073" transform="rotate(-0 591.8976 207.399073)">None · five regions</text>
+   </g>
+   <g id="PathCollection_4">
+    <g clip-path="url(#pbc0f18cb7d)">
+     <use xlink:href="#m8d269b0347" x="241.254165" y="204.645143" style="fill: #205a91; stroke: #205a91; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="text_23">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #205a91" x="251.254165" y="207.398658" transform="rotate(-0 251.254165 207.398658)">0%</text>
+   </g>
+   <g id="text_24">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #18283b" x="185.472" y="236.01393" transform="rotate(-0 185.472 236.01393)">IBM Code Engine · replay</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4f6073" x="185.472" y="243.864405" transform="rotate(-0 185.472 243.864405)">n = 775</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #18283b" x="591.8976" y="239.193358" transform="rotate(-0 591.8976 239.193358)">None · units are apps</text>
+   </g>
+   <g id="PathCollection_5">
+    <g clip-path="url(#pbc0f18cb7d)">
+     <use xlink:href="#m8d269b0347" x="296.112908" y="236.439429" style="fill: #205a91; stroke: #205a91; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="text_27">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #205a91" x="306.112908" y="239.192944" transform="rotate(-0 306.112908 239.192944)">18.54%</text>
+   </g>
+   <g id="text_28">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #18283b" x="185.472" y="267.808215" transform="rotate(-0 185.472 267.808215)">Globus Compute · replay</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #4f6073" x="185.472" y="275.658691" transform="rotate(-0 185.472 275.658691)">n = 562</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #18283b" x="591.8976" y="270.987644" transform="rotate(-0 591.8976 270.987644)">None · exploratory subset</text>
+   </g>
+   <g id="PathCollection_6">
+    <g clip-path="url(#pbc0f18cb7d)">
+     <use xlink:href="#m8d269b0347" x="241.254165" y="268.233714" style="fill: #205a91; stroke: #205a91; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="text_31">
+    <text style="font-weight: 700; font-size: 10.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #205a91" x="251.254165" y="270.98723" transform="rotate(-0 251.254165 270.98723)">0%</text>
+   </g>
+  </g>
+  <g id="text_32">
+   <text style="font-weight: 700; font-size: 22px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #18283b" x="44.352" y="34.050563" transform="rotate(-0 44.352 34.050563)">SPES cold-start rates across traces</text>
+  </g>
+  <g id="text_33">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #4f6073" x="44.352" y="55.352681" transform="rotate(-0 44.352 55.352681)">Q3 is the 75th percentile of per-unit cold-start rates over two test days.</text>
+  </g>
+  <g id="text_34">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #4f6073" transform="translate(44.352 352.025438)">Each row uses its own test cohort. Correlation settings and units differ across traces.</text>
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #4f6073" transform="translate(44.352 365.525438)">Sources: SPES (ICDE 2024, Fig. 8 discussion) and local per-unit simulation outputs.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pbc0f18cb7d">
+   <rect x="233.856" y="88.596" width="322.56" height="200.304"/>
+  </clipPath>
+ </defs>
+</svg>

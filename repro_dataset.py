@@ -31,6 +31,12 @@ DATASETS = {
         "summary": "result/summary_azure2021.json",
         "column": "Azure 2021",
     },
+    "azure2021_corr": {
+        "data_dir": "raw_data/azurefunctions-2021-spes",
+        "summary": "result/summary_azure2021_corr.json",
+        "column": "Azure 2021 with its own offline map",
+        "candidate_map": "result/runs/azure2021_corr/offline_candi.json",
+    },
     "huawei": {
         "data_dir": "raw_data/huawei2025-spes",
         "summary": "result/summary_huawei.json",
@@ -88,7 +94,7 @@ def load_split(files, ndays):
     return arrcount, owner_app, owner_func, app_func, trig
 
 
-def algorithm_source(tag):
+def algorithm_source(tag, candidate_map=None):
     path = os.path.join(ROOT, "repro_run.py")
     text = open(path, encoding="utf-8").read()
     marker = "# ---- cell 2 ----"
@@ -98,7 +104,9 @@ def algorithm_source(tag):
         raise SystemExit("repro_run.py no longer reads func_candi.json where expected")
     src = src.replace(
         old_candi,
-        "train_candi = {}  # empty map; the 2019 candidate file is not used",
+        'train_candi = read_json("%s")' % candidate_map
+        if candidate_map
+        else "train_candi = {}  # empty map; the 2019 candidate file is not used",
         1,
     )
     run_dir = "result/runs/%s" % tag
@@ -201,13 +209,12 @@ def write_summary(tag, spec, ns):
         convert_stats = json.load(f)
     summary = {
         "column": spec["column"],
-        # Only the offline candidate map is empty; same-owner online links still pre-warm.
-        "correlation": (
-            "offline map empty; same-owner online pre-warm on"
-            if n_corr_links
-            else "offline map empty; no same-owner links"
+        # Same-owner online links pre-warm whether or not an offline map is present.
+        "correlation": "%s; %s" % (
+            "offline map from this dataset" if spec.get("candidate_map") else "offline map empty",
+            "same-owner online pre-warm on" if n_corr_links else "no same-owner links",
         ),
-        "candidate_map": "empty",
+        "candidate_map": spec.get("candidate_map", "empty"),
         "func_candi_json": "not read",
         "comparable_to_azure_2019_paper": False,
         "n_functions_train": int(ns["train_NUM"]),
@@ -394,7 +401,7 @@ def run(tag):
         "inflation": inflation,
     }
     print("loaded", ns["train_NUM"], ns["test_NUM"], "exec", tag, flush=True)
-    src = algorithm_source(tag)
+    src = algorithm_source(tag, spec.get("candidate_map"))
     os.chdir(ROOT)
     run_dir = os.path.join(ROOT, "result", "runs", tag)
     os.makedirs(run_dir, exist_ok=True)

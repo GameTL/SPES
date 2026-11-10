@@ -1,0 +1,166 @@
+1188|with tqdm(total=1440 * 2) as pbar:
+1189|    for i in range(1440 * 2):
+1190|        if (i+1) % 40 == 0:  pbar.update(40)
+1191|        
+1192|        random.shuffle(func_corr_lst)
+1193|        for func in (func_lst + func_corr_lst): #In case of some functions staying in the memory forever
+1194|            _type = func_class[func].type
+1195|            
+1196|            if func in test_func_arrcount and test_func_arrcount[func][i] > 0: #invok
+1197|                func_invok[func] += test_func_arrcount[func][i]
+1198|                func_invok_bool[func] += 1
+1199|                
+1200|                if not func_class[func].state: #cold start
+1201|                    func_cold[func] += 1
+1202|                    func_class[func].load(i)
+1203|                    memory.add(func)
+1204|                
+1205|                if func_class[func].wait_time is None or func_class[func].wait_time > 0: #A new invocation seq begins currently
+1206|                    func_class[func].pre_call_start = i
+1207|                    func_class[func].adp_wait.append(func_class[func].wait_time)
+1208|                    
+1209|                    ## Shift: Update predictive values
+1210|                    if SHIFT and (_type in [REGULAR, DENSE, POSSIBLE, NEW_POSS, UNKNOWN]) and len(func_class[func].adp_wait) >= 5: # Adaptively Updating
+1211|                        if _type == REGULAR:
+1212|                            if abs(np.median(func_class[func].adp_wait) - func_class[func].pred_interval[0]) > max(1, func_class[func].idle_info["std"]):
+1213|                                func_class[func].pred_interval[0] = (func_class[func].pred_interval[0]+np.median(func_class[func].adp_wait))/2
+1214|                                
+1215|                        elif _type == DENSE:
+1216|                            if abs(min(func_class[func].adp_wait) - func_class[func].pred_interval[0]) > 1:
+1217|                                func_class[func].pred_interval[0] = min(func_class[func].adp_wait)
+1218|                            if (abs(max(func_class[func].adp_wait) - func_class[func].pred_interval[1]) > 1) \
+1219|                                and max(func_class[func].adp_wait) <= DENSE_UPPER_BOUND:
+1220|                                func_class[func].pred_interval[1] = max(func_class[func].adp_wait)
+1221|                        
+1222|                        elif _type in [POSSIBLE, NEW_POSS]:
+1223|                            idle_unique, idle_counts = np.unique(func_class[func].adp_wait, return_counts=True)
+1224|                            if max(idle_counts) >= max(2, func_class[func].idle_info["mode_count"][-1]):
+1225|                                idle_max_index = np.argsort(-idle_counts)
+1226|                                for idx in idle_max_index:
+1227|                                    if idle_unique[idx] in func_class[func].idle_info["mode"]: continue
+1228|                                    pos = len(func_class[func].idle_info["mode_count"]) - \
+1229|                                            bisect.bisect(func_class[func].idle_info["mode_count"][::-1], idle_counts[idx])
+1230|                                    if pos >= len(func_class[func].idle_info["mode_count"]): continue
+1231|                                        
+1232|                                    if idle_counts[idx] > func_class[func].idle_info["mode_count"][pos]:
+1233|                                        func_class[func].idle_info["mode_count"][pos] = idle_counts[idx]
+1234|                                        func_class[func].idle_info["mode"][pos] = idle_unique[idx]
+1235|                                    elif idle_counts[idx] == func_class[func].idle_info["mode_count"][pos]:
+1236|                                        func_class[func].idle_info["mode_count"].insert(pos, idle_counts[idx])
+1237|                                        func_class[func].idle_info["mode"].insert(pos, idle_unique[idx])
+1238|
+1239|                                
+1240|                                if max(func_class[func].idle_info["mode"]) - min(func_class[func].idle_info["mode"]) <= DISCRETE_TH:
+1241|                                    func_class[func].pred_interval = [min(func_class[func].idle_info["mode"]), 
+1242|                                                      max(func_class[func].idle_info["mode"])]
+1243|                                    func_class[func].idle_info["pred_interval_discrete"] = False
+1244|                                else: 
+1245|                                    func_class[func].pred_interval = sorted(list(func_class[func].idle_info["mode"]))
+1246|                                    func_class[func].idle_info["pred_interval_discrete"] = True
+1247|                                
+1248|                        elif _type == UNKNOWN:
+1249|                            idle_unique, idle_counts = np.unique(func_class[func].adp_wait, return_counts=True)
+1250|                            idxs = np.argsort(-idle_counts)[: min(5, sum(np.where(idle_counts > 1, 1, 0)))]
+1251|                            mode_lst = idle_unique[idxs]
+1252|                            if len(mode_lst) > 0:
+1253|                                func_class[func].type = NEW_POSS
+1254|                                func_class[func].idle_info["mode"] = mode_lst.tolist()
+1255|                                func_class[func].idle_info["mode_count"] = idle_counts[idxs].tolist()
+1256|                                
+1257|                                if max(mode_lst) - min(mode_lst) <= DISCRETE_TH:
+1258|                                    func_class[func].idle_info["pred_interval_discrete"] = False
+1259|                                    func_class[func].pred_interval = [min(mode_lst), max(mode_lst)]
+1260|                                else:
+1261|                                    func_class[func].idle_info["pred_interval_discrete"] = True
+1262|                                    func_class[func].pred_interval = sorted(list(mode_lst))
+1263|                                
+1264|                func_class[func].wait_time = 0
+1265|                func_class[func].last_call = i
+1266|                
+1267|                #Update prediction for UNI, LIMITIDLE, DENSE, DIVI
+1268|                if _type == REGULAR:
+1269|                    func_class[func].next_invok_start = [(i + 1 + func_class[func].pred_interval[0] - min(func_class[func].idle_info["std"], EN_STD),
+1270|                                                          i + 1 + func_class[func].pred_interval[0] + min(func_class[func].idle_info["std"], EN_STD))]
+1271|                        
+1272|                elif _type == APPRO_REGULAR or (_type in [POSSIBLE, NEW_POSS] and func_class[func].idle_info["pred_interval_discrete"]):
+1273|                    func_class[func].next_invok_start = [(i + p + 1, i + p + 1) for p in func_class[func].pred_interval]
+1274|                
+1275|                elif _type == DENSE or (_type in [POSSIBLE, NEW_POSS] and (not func_class[func].idle_info["pred_interval_discrete"])):
+1276|                    func_class[func].next_invok_start = [(i + func_class[func].pred_interval[0] + 1, i + func_class[func].pred_interval[1] + 1)]
+1277|                
+1278|                #The occurrences of candidate functions can be predictive indicators.
+1279|
+1280|                if func in candi_func_tuplelst: 
+1281|                    for (target_func, lag) in candi_func_tuplelst[func]: #func is candi, target is target
+1282|                        func_class[target_func].next_invok_start[func] = [(i, i + lag)]
+1283|                        if _type in [REGULAR, APPRO_REGULAR, DENSE, POSSIBLE, NEW_POSS]:
+1284|                            func_class[target_func].next_invok_start[func] += [(l, r + lag) 
+1285|                                                                             for (l, r) in func_class[func].next_invok_start]
+1286|                if func in test_func_corr:
+1287|                    for target_func in test_func_corr[func]:
+1288|                        if func_class[target_func].type == CORR:
+1289|                            func_class[target_func].next_invok_start[func] += [(i, i + 1)]
+1290|                            func_class[target_func].next_invok_start[func] = list(set(func_class[target_func].next_invok_start[func]))
+1291|                        else:
+1292|                            #assert not isinstance(func_class[post_func].next_invok_start, dict), post_func
+1293|                            func_class[target_func].next_invok_start += [(i, i + 1)]
+1294|                            func_class[target_func].next_invok_start = list(set(func_class[target_func].next_invok_start))
+1295|                        
+1296|            else: # not invok
+1297|                #func_class[func].cal_idle()
+1298|                if func_class[func].wait_time is None:
+1299|                    func_class[func].wait_time = 1
+1300|                else:
+1301|                    func_class[func].wait_time += 1
+1302|                    
+1303|                if func in memory:
+1304|                    waste_mem_time += 1
+1305|                    if func in func_waste:
+1306|                        func_waste[func] += 1
+1307|                
+1308|                # Prewarm according to different types
+1309|                pre_warm_flag = False
+1310|                
+1311|                if _type == REGULAR:
+1312|                    (p_small, p_large) = func_class[func].next_invok_start[0]
+1313|                    p_small += (func_class[func].pred_interval[0] + 1) * int(p_large <= i) #allow for one missing hit
+1314|                    func_class[func].next_invok_start[0] = (p_small, p_small + 2 * min(func_class[func].idle_info["std"], EN_STD))
+1315|
+1316|                if _type in [REGULAR, APPRO_REGULAR, DENSE, POSSIBLE, NEW_POSS, UNKNOWN]:
+1317|                    for (left, right) in func_class[func].next_invok_start:
+1318|                        if left <= i + PRE_WARM and right >= i - PRE_WARM:
+1319|                            pre_warm_flag = True
+1320|                            break
+1321|
+1322|                elif _type == CORR:
+1323|                    for tuple_lst in func_class[func].next_invok_start.values():
+1324|                        for (left, right) in tuple_lst:
+1325|                            if left <= i + PRE_WARM and right >= i - PRE_WARM:
+1326|                                pre_warm_flag = True
+1327|                                break
+1328|                        if pre_warm_flag: break
+1329|                
+1330|                if func_class[func].state and (not pre_warm_flag) and func_class[func].wait_time >= GIVE_UP[_type]: #Remove
+1331|                    memory.remove(func)
+1332|                    func_class[func].unload()
+1333|                
+1334|                elif pre_warm_flag:
+1335|                    memory.add(func)
+1336|                    func_class[func].load(i)
+1337|
+1338|        memory_size.append(len(memory))
+1339|        
+1340|        ## Update test_corr
+1341|        for func, perform_dict in test_func_corr_perform:
+1342|            for candi in perform_dict:
+1343|                test_func_corr_perform[func][candi] += int(bool(test_func_arrcount[func][i]) & bool(test_func_arrcount[candi][i]))
+1344|        
+1345|        for func, perform_dict in test_func_corr_perform.items():
+1346|            best_perform = max(perform_dict.values())
+1347|            del_lst = []
+1348|            for candi, perform in perform_dict:
+1349|                if best_perform - perform >= CORR_REMOVAL_TH:
+1350|                    del_lst.append(candi)
+1351|            for candi in del_lst:
+1352|                del test_func_corr[func][candi]
+1353|                del test_func_corr_perform[func][candi]

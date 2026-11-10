@@ -25,7 +25,9 @@ def load_corr_inputs(corr_dir):
         for line in rf:
             func, forget, arrcount = line.strip().split('\t')
             func_forget[func] = int(forget)
-            func_arrcount[func] = [int(a) for a in arrcount.split(',')]
+            # int32 keeps the full minute series under 16GB. cal_correlation
+            # already wraps inputs in np.array; the >0 predicate is unchanged.
+            func_arrcount[func] = np.asarray(arrcount.split(','), dtype=np.int32)
 
     unknown_ownerapp_lst = {}
     with open(os.path.join(corr_dir, "unknown_ownerapp_lst.txt")) as rf:

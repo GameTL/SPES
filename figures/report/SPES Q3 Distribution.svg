@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1548" height="1280" viewBox="0 0 1548 1280" role="img" aria-labelledby="chart-title chart-description" font-family="Arial, Helvetica, sans-serif">
+  <title id="chart-title">Why Q3 lands where it does</title>
+  <desc id="chart-description">Four 100% stacked bars show the shares of test functions or apps with zero, some, or all invocations cold in each SPES replay. A black line marks the 75th percentile. Huawei is the only full replay where this line falls in the zero-cold segment. A separate Azure 2021 sensitivity bar shows Q3 of 12.44% for functions with at least five invocations.</desc>
+  <!-- Sources: SPES replay invocation and cold-start counts. Azure 2019 uses result/func_invok_rebuilt.json and result/func_cold_08-23-43.json. Other rows use result/runs/{azure2021_corr,huawei_all,ibm}/func_{invok,cold}.json. Q3 uses linear interpolation over per-unit cold starts divided by invocations. -->
+  <rect x="0" y="0" width="1548" height="1280" fill="#f8f8f7" />
+  <text x="28" y="69" font-size="46" fill="#101010" font-weight="700" text-anchor="start">Why Q3 lands where it does</text>
+  <text x="28" y="130" font-size="31" fill="#50504e" font-weight="400" text-anchor="start">The four main bars rank all test functions or apps by their cold-start rate in the SPES replay.</text>
+  <text x="28" y="179" font-size="31" fill="#50504e" font-weight="400" text-anchor="start">The 75% line marks Q3. The columns on the right show the always-cold share and the Q3 rate.</text>
+  <rect x="28" y="226" width="28" height="28" fill="#2872c8" rx="4" />
+  <text x="70" y="249" font-size="31" fill="#50504e" font-weight="400" text-anchor="start">No cold starts</text>
+  <rect x="310" y="226" width="28" height="28" fill="#d3d3ca" rx="4" />
+  <text x="352" y="249" font-size="31" fill="#50504e" font-weight="400" text-anchor="start">Some cold starts</text>
+  <rect x="634" y="226" width="28" height="28" fill="#e14444" rx="4" />
+  <text x="676" y="249" font-size="31" fill="#50504e" font-weight="400" text-anchor="start">Always cold</text>
+  <line x1="386.0" y1="334" x2="386.0" y2="901" stroke="#deded5" stroke-width="1.6" />
+  <text x="386.0" y="942" font-size="27" fill="#50504e" font-weight="400" text-anchor="start">0%</text>
+  <line x1="604.0" y1="334" x2="604.0" y2="901" stroke="#deded5" stroke-width="1.6" />
+  <text x="604.0" y="942" font-size="27" fill="#50504e" font-weight="400" text-anchor="middle">25%</text>
+  <line x1="822.0" y1="334" x2="822.0" y2="901" stroke="#deded5" stroke-width="1.6" />
+  <text x="822.0" y="942" font-size="27" fill="#50504e" font-weight="400" text-anchor="middle">50%</text>
+  <line x1="1040.0" y1="334" x2="1040.0" y2="901" stroke="#deded5" stroke-width="1.6" />
+  <text x="1040.0" y="942" font-size="27" fill="#50504e" font-weight="400" text-anchor="middle">75%</text>
+  <line x1="1258.0" y1="334" x2="1258.0" y2="901" stroke="#deded5" stroke-width="1.6" />
+  <text x="1258.0" y="942" font-size="27" fill="#50504e" font-weight="400" text-anchor="end">100%</text>
+  <line x1="386" y1="901" x2="1258" y2="901" stroke="#bebeb0" stroke-width="1.8" />
+  <text x="1040.0" y="313" font-size="29" fill="#101010" font-weight="700" text-anchor="middle">75th percentile</text>
+  <text x="1342" y="313" font-size="25" fill="#101010" font-weight="700" text-anchor="middle">Always cold</text>
+  <text x="1473" y="313" font-size="25" fill="#101010" font-weight="700" text-anchor="middle">Q3</text>
+  <defs>
+    <clipPath id="bar-azure2019-1">
+      <rect x="386" y="383" width="872" height="56" fill="#f8f8f7" rx="9" />
+    </clipPath>
+    <clipPath id="bar-azure2021_corr-1">
+      <rect x="386" y="520" width="872" height="56" fill="#f8f8f7" rx="9" />
+    </clipPath>
+    <clipPath id="bar-huawei_all-1">
+      <rect x="386" y="657" width="872" height="56" fill="#f8f8f7" rx="9" />
+    </clipPath>
+    <clipPath id="bar-ibm-1">
+      <rect x="386" y="794" width="872" height="56" fill="#f8f8f7" rx="9" />
+    </clipPath>
+    <clipPath id="bar-azure2021_corr-5">
+      <rect x="386" y="1070" width="872" height="56" fill="#f8f8f7" rx="9" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#bar-azure2019-1)">
+    <title>Azure 2019, Baseline · 39,388 functions. No cold starts 58.63%, some cold starts 33.74%, always cold 7.63%, Q3 9.59%.</title>
+    <rect x="386" y="383" width="511.2495" height="56" fill="#2872c8" />
+    <rect x="897.2495" y="383" width="294.2015" height="56" fill="#d3d3ca" />
+    <rect x="1191.451" y="383" width="66.549" height="56" fill="#e14444" />
+  </g>
+  <line x1="897.2495" y1="383" x2="897.2495" y2="439" stroke="#f8f8f7" stroke-width="3.5" />
+  <line x1="1191.451" y1="383" x2="1191.451" y2="439" stroke="#f8f8f7" stroke-width="3.5" />
+  <text x="28" y="404" font-size="34" fill="#101010" font-weight="700" text-anchor="start">Azure 2019</text>
+  <text x="28" y="441" font-size="25" fill="#50504e" font-weight="400" text-anchor="start">Baseline · 39,388 functions</text>
+  <text x="400" y="421" font-size="29" fill="#ffffff" font-weight="700" text-anchor="start">58.6%</text>
+  <text x="1342" y="421" font-size="29" fill="#50504e" font-weight="400" text-anchor="middle">7.63%</text>
+  <text x="1473" y="421" font-size="29" fill="#101010" font-weight="700" text-anchor="middle">9.59%</text>
+  <g clip-path="url(#bar-azure2021_corr-1)">
+    <title>Azure 2021, 238 functions. No cold starts 18.49%, some cold starts 59.24%, always cold 22.27%, Q3 69.03%.</title>
+    <rect x="386" y="520" width="161.2101" height="56" fill="#2872c8" />
+    <rect x="547.2101" y="520" width="516.605" height="56" fill="#d3d3ca" />
+    <rect x="1063.8151" y="520" width="194.1849" height="56" fill="#e14444" />
+  </g>
+  <line x1="547.2101" y1="520" x2="547.2101" y2="576" stroke="#f8f8f7" stroke-width="3.5" />
+  <line x1="1063.8151" y1="520" x2="1063.8151" y2="576" stroke="#f8f8f7" stroke-width="3.5" />
+  <text x="28" y="541" font-size="34" fill="#101010" font-weight="700" text-anchor="start">Azure 2021</text>
+  <text x="28" y="578" font-size="25" fill="#50504e" font-weight="400" text-anchor="start">238 functions</text>
+  <text x="400" y="558" font-size="29" fill="#ffffff" font-weight="700" text-anchor="start">18.5%</text>
+  <text x="1342" y="558" font-size="29" fill="#50504e" font-weight="400" text-anchor="middle">22.27%</text>
+  <text x="1473" y="558" font-size="29" fill="#101010" font-weight="700" text-anchor="middle">69.03%</text>
+  <g clip-path="url(#bar-huawei_all-1)">
+    <title>Huawei 2025, 6,504 functions. No cold starts 77.92%, some cold starts 17.62%, always cold 4.46%, Q3 0%.</title>
+    <rect x="386" y="657" width="679.4736" height="56" fill="#2872c8" />
+    <rect x="1065.4736" y="657" width="153.6457" height="56" fill="#d3d3ca" />
+    <rect x="1219.1193" y="657" width="38.8807" height="56" fill="#e14444" />
+  </g>
+  <line x1="1065.4736" y1="657" x2="1065.4736" y2="713" stroke="#f8f8f7" stroke-width="3.5" />
+  <line x1="1219.1193" y1="657" x2="1219.1193" y2="713" stroke="#f8f8f7" stroke-width="3.5" />
+  <text x="28" y="678" font-size="34" fill="#101010" font-weight="700" text-anchor="start">Huawei 2025</text>
+  <text x="28" y="715" font-size="25" fill="#50504e" font-weight="400" text-anchor="start">6,504 functions</text>
+  <text x="400" y="695" font-size="29" fill="#ffffff" font-weight="700" text-anchor="start">77.9%</text>
+  <text x="1342" y="695" font-size="29" fill="#50504e" font-weight="400" text-anchor="middle">4.46%</text>
+  <text x="1473" y="695" font-size="29" fill="#101010" font-weight="700" text-anchor="middle">0%</text>
+  <g clip-path="url(#bar-ibm-1)">
+    <title>IBM Code Engine, 775 apps. No cold starts 19.87%, some cold starts 78.06%, always cold 2.06%, Q3 18.54%.</title>
+    <rect x="386" y="794" width="173.2748" height="56" fill="#2872c8" />
+    <rect x="559.2748" y="794" width="680.7226" height="56" fill="#d3d3ca" />
+    <rect x="1239.9974" y="794" width="18.0026" height="56" fill="#e14444" />
+  </g>
+  <line x1="559.2748" y1="794" x2="559.2748" y2="850" stroke="#f8f8f7" stroke-width="3.5" />
+  <line x1="1239.9974" y1="794" x2="1239.9974" y2="850" stroke="#f8f8f7" stroke-width="3.5" />
+  <text x="28" y="815" font-size="34" fill="#101010" font-weight="700" text-anchor="start">IBM Code Engine</text>
+  <text x="28" y="852" font-size="25" fill="#50504e" font-weight="400" text-anchor="start">775 apps</text>
+  <text x="400" y="832" font-size="29" fill="#ffffff" font-weight="700" text-anchor="start">19.9%</text>
+  <text x="1342" y="832" font-size="29" fill="#50504e" font-weight="400" text-anchor="middle">2.06%</text>
+  <text x="1473" y="832" font-size="29" fill="#101010" font-weight="700" text-anchor="middle">18.54%</text>
+  <line x1="1040.0" y1="334" x2="1040.0" y2="901" stroke="#101010" stroke-width="4" />
+  <line x1="28" y1="973" x2="1520" y2="973" stroke="#bebeb0" stroke-width="1.8" />
+  <text x="28" y="1014" font-size="30" fill="#101010" font-weight="700" text-anchor="start">Azure 2021 sensitivity check</text>
+  <text x="450" y="1014" font-size="26" fill="#50504e" font-weight="400" text-anchor="start">Same replay, keeping functions with at least five test invocations.</text>
+  <line x1="386.0" y1="1060" x2="386.0" y2="1136" stroke="#deded5" stroke-width="1.6" />
+  <line x1="604.0" y1="1060" x2="604.0" y2="1136" stroke="#deded5" stroke-width="1.6" />
+  <line x1="822.0" y1="1060" x2="822.0" y2="1136" stroke="#deded5" stroke-width="1.6" />
+  <line x1="1040.0" y1="1060" x2="1040.0" y2="1136" stroke="#deded5" stroke-width="1.6" />
+  <line x1="1258.0" y1="1060" x2="1258.0" y2="1136" stroke="#deded5" stroke-width="1.6" />
+  <line x1="386" y1="1136" x2="1258" y2="1136" stroke="#bebeb0" stroke-width="1.8" />
+  <text x="386" y="1167" font-size="24" fill="#50504e" font-weight="400" text-anchor="start">0%</text>
+  <text x="1258" y="1167" font-size="24" fill="#50504e" font-weight="400" text-anchor="end">100%</text>
+  <text x="1040.0" y="1049" font-size="24" fill="#101010" font-weight="700" text-anchor="middle">75th percentile</text>
+  <text x="1342" y="1049" font-size="24" fill="#101010" font-weight="700" text-anchor="middle">Always cold</text>
+  <text x="1473" y="1049" font-size="24" fill="#101010" font-weight="700" text-anchor="middle">Q3</text>
+  <g clip-path="url(#bar-azure2021_corr-5)">
+    <title>Filtered cohort, 153 of 238 functions. No cold starts 20.26%, some cold starts 77.12%, always cold 2.61%, Q3 12.44%.</title>
+    <rect x="386" y="1070" width="176.6797" height="56" fill="#2872c8" />
+    <rect x="562.6797" y="1070" width="672.5229" height="56" fill="#d3d3ca" />
+    <rect x="1235.2026" y="1070" width="22.7974" height="56" fill="#e14444" />
+  </g>
+  <line x1="562.6797" y1="1070" x2="562.6797" y2="1126" stroke="#f8f8f7" stroke-width="3.5" />
+  <line x1="1235.2026" y1="1070" x2="1235.2026" y2="1126" stroke="#f8f8f7" stroke-width="3.5" />
+  <text x="28" y="1091" font-size="34" fill="#101010" font-weight="700" text-anchor="start">Filtered cohort</text>
+  <text x="28" y="1128" font-size="25" fill="#50504e" font-weight="400" text-anchor="start">153 of 238 functions</text>
+  <text x="400" y="1108" font-size="29" fill="#ffffff" font-weight="700" text-anchor="start">20.3%</text>
+  <text x="1342" y="1108" font-size="29" fill="#50504e" font-weight="400" text-anchor="middle">2.61%</text>
+  <text x="1473" y="1108" font-size="29" fill="#101010" font-weight="700" text-anchor="middle">12.44%</text>
+  <line x1="1040.0" y1="1060" x2="1040.0" y2="1136" stroke="#101010" stroke-width="4" />
+  <text x="28" y="1216" font-size="25" fill="#50504e" font-weight="400" text-anchor="start">Huawei’s recorded logs give Q3 = 100% for the same functions and test days. Its replay gives 0%.</text>
+  <text x="28" y="1252" font-size="22" fill="#50504e" font-weight="400" text-anchor="start">Source: SPES replay results and Huawei’s recorded trace.</text>
+</svg>

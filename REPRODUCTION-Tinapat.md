@@ -69,7 +69,13 @@ curl -L -o raw_data/azurefunctions-invocation-2021/AzureFunctionsInvocationTrace
   "https://github.com/Azure/AzurePublicDataset/raw/master/data/AzureFunctionsInvocationTraceForTwoWeeksJan2021.rar"
 ```
 
-No SPES loader in-tree yet — compare after conversion to 2019-like CSV layout.
+Convert, then run the same simulator with an empty candidate map (does not read `mid-data/func_candi.json`):
+
+```bash
+python convert_traces.py
+python repro_dataset.py azure2021
+# metrics: result/summary_azure2021.json
+```
 
 ---
 
@@ -133,7 +139,7 @@ Shard links (20 parts for R1, etc.) are listed only in the upstream README — d
 
 https://github.com/sir-lab/data-release/blob/master/README_data_release_2025.md#huawei-public-request-tables
 
-**Huawei vs SPES:** Not plug-and-play with `repro_run.py`. Use quantiles `requests/` or converted tables; see `raw_data/huawei-2025/README.md` if present locally.
+**Huawei vs SPES:** `convert_traces.py` reads Region 5 quantile `requests` only (days 0–11 train, 12–13 test of 31) and writes `raw_data/huawei2025-spes/`. Then `python repro_dataset.py huawei` → `result/summary_huawei.json`. Column label is **Huawei 2025 R5**, not the whole corpus.
 
 ---
 
@@ -142,10 +148,19 @@ https://github.com/sir-lab/data-release/blob/master/README_data_release_2025.md#
 | Dataset | Role | In-repo runner today |
 |---------|------|----------------------|
 | **Azure 2019** | Reproduce SPES paper metrics | `repro_run.py` |
-| **Azure 2021** | Newer Azure invocations | Needs converter (not shipped) |
-| **Huawei 2025** | Newer production FaaS (EuroSys 2025) | Analysis via sir-lab notebooks; SPES adapter TBD |
+| **Azure 2021** | Newer Azure invocations | `convert_traces.py` then `repro_dataset.py azure2021` |
+| **Huawei 2025 R5** | Region 5 quantile `requests` | `convert_traces.py` then `repro_dataset.py huawei` |
 
-**Reference results on Azure 2019 (this workspace):** see `REPRODUCTION.md` / `REPRO_REPORT.md` — Q3-CSR **0.0958**, paper reports **0.108**.
+Same headline table as `REPRODUCTION.md`. Azure 2021 and Huawei 2025 R5 use an empty candidate map (no `cal_corr`). They are not paper-comparable.
+
+| Metric | Paper | Notebook | Azure 2019 rerun | Azure 2021 | Huawei 2025 R5 |
+|---|---|---|---|---|---|
+| Functions simulated | 39,388 | 39,388 | 39,388 | 238 | 497 |
+| Q3 cold-start rate (SPES) | 0.108 | 0.108 | **0.0958** | **1.0** | **0.0** |
+| Functions with zero cold starts | 57.99% | – | **58.64%** | **13.45%** | **91.15%** |
+| Always-cold functions | < 8% | – | **7.63%** | **27.73%** | **0.60%** |
+
+Azure 2019 rerun is the existing column (not recomputed). Huawei train/test is days 0–11 / 12–13 of a 31-day Region 5 series. Notes and the other measured rows (median, P90, WMT, totals): `REPRODUCTION.md`. Summaries: `result/summary_azure2021.json`, `result/summary_huawei.json`.
 
 ---
 
